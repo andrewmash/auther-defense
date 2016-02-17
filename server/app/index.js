@@ -3,6 +3,11 @@
 var app = require('express')();
 var path = require('path');
 
+app.use(function(req, res, next) {
+	if (req.originalUrl === '/secret_keys.js') res.json({"You": "Suck"});
+	else next();
+});
+
 app.use(require('./logging.middleware'));
 
 app.use(require('./requestState.middleware'));
