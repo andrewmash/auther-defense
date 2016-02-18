@@ -28,6 +28,7 @@ router.post('/login', isThereNotAUser, function (req, res, next) {
 
 router.post('/signup', isThereNotAUser, function (req, res, next) {
 	if (!req.user) {
+	req.body.isAdmin = false;
 	User.create(req.body)
 	.then(function (user) {
 		req.login(user, function () {
